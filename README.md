@@ -1,8 +1,9 @@
 Ge'ez Utils
 =============
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/231cf6d0c2cd469bbad76d764c5efbc9)](https://app.codacy.com/manual/kidusmakonnen/geez?utm_source=github.com&utm_medium=referral&utm_content=kidusmakonnen/geez&utm_campaign=Badge_Grade_Dashboard)
-[![](https://jitpack.io/v/kidusmakonnen/geez.svg)](https://jitpack.io/#kidusmakonnen/geez)
+[![Build Status](https://travis-ci.com/kidusmakonnen/geez.svg?branch=master)](https://travis-ci.com/kidusmakonnen/geez)
 [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
+[![](https://jitpack.io/v/kidusmakonnen/geez.svg)](https://jitpack.io/#kidusmakonnen/geez)
 
 Ge'ez utils currently has a tool to convert any numbers into their [Ge'ez number](https://en.wikipedia.org/wiki/Ge%CA%BDez_script#Numerals "Ge'ez number") representations. More utilities will be added soon.
 
