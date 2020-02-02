@@ -21,12 +21,12 @@ public class GeezUtil {
      * @param num This is the first parameter to this method, which is any number (long) greater than 0.
      * @return The returned value is the converted Ge'ez number.
      */
-    public static String toGeez(long num) {
-        if (num < 1) {
-            throw new IllegalArgumentException("Value must be greater than 1.");
+    public static String toGeez(String num) {
+        if (!num.matches("^[0-9]+") || "0".equals(num)) {
+            throw new IllegalArgumentException("Invalid input.");
         }
         //determine the number of digits and append 0 if it's odd
-        String number = (int) Math.log10(num) % 2 == 0 ? String.format("0%d", num) : String.valueOf(num);
+        String number = num.length() % 2 == 0 ? num : String.format("0%s", num);
         //split the number string into groups of two
         List<String> splitNumber = splitAndGroup(number, 2);
 
