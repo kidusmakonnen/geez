@@ -3,6 +3,7 @@ package et.kidus.geez;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class GeezUtilTest {
     private final long[] testInputs = {
@@ -36,4 +37,12 @@ class GeezUtilTest {
         }
     }
 
+    @Test
+    void testShouldThrowExceptionOnValueLessThanOne() {
+        IllegalArgumentException exception = assertThrows(
+                IllegalArgumentException.class,
+                () -> GeezUtil.toGeez(0)
+        );
+        assertEquals("Value must be greater than 1.", exception.getMessage());
+    }
 }

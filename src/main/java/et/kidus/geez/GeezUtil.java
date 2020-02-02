@@ -22,7 +22,7 @@ public class GeezUtil {
      * @return The returned value is the converted Ge'ez number.
      */
     public static String toGeez(long num) {
-        if (num < 0) {
+        if (num < 1) {
             throw new IllegalArgumentException("Value must be greater than 1.");
         }
         //determine the number of digits and append 0 if it's odd
@@ -45,13 +45,13 @@ public class GeezUtil {
             } else {
                 if ((groupLength - i) % 2 == 0) {
                     delim = GEEZ_TEN_THOUSAND;
-                    if (i == 0 && pair.equals("01")) {
+                    if (i == 0 && "01".equals(pair)) {
                         convertedPair = "";
                     }
                 } else {
-                    if (!pair.equals("00"))
+                    if (!"00".equals(pair))
                         delim = GEEZ_HUNDRED;
-                    if (pair.equals("01")) {
+                    if ("01".equals(pair)) {
                         convertedPair = "";
                     }
                 }
