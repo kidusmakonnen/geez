@@ -69,6 +69,8 @@ GeezUtils.fromGeez("፫፼፫፻፫፼፫፻፫")//returns 303030303
 
 Releases
 --------
+### 0.2.0
+> * Added number conversion from Ge'ez numerals
 ### 0.1.3
 > * Fixed regex issue
 
