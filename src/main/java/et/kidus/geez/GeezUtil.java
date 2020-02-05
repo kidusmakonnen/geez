@@ -80,7 +80,7 @@ public class GeezUtil {
      * @param geezNumber The Ge'ez number string.
      * @return Returns the converted number.
      */
-    public static long fromGeez(String geezNumber) {
+    public static long fromGeez(String geezNumber) throws IllegalArgumentException {
         String geezNum = geezNumber;
         //determine the amount of GEEZ_TEN_THOUSAND characters in the string
         int amountOfThousands = geezNum.length() - geezNum.replace(GEEZ_TEN_THOUSAND, "").length();
