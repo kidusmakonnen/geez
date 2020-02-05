@@ -1,6 +1,9 @@
 package et.kidus.geez;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * A simple library to convert numbers to their Ge'ez number representation.
