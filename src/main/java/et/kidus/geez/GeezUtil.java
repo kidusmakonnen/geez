@@ -74,10 +74,11 @@ public class GeezUtil {
     /**
      * This method converts Ge'ez numerals back into Arabic numerals.
      *
-     * @param geezNum The Ge'ez number string.
+     * @param geezNumber The Ge'ez number string.
      * @return Returns the converted number.
      */
-    public static long fromGeez(String geezNum) {
+    public static long fromGeez(String geezNumber) {
+        String geezNum = geezNumber;
         //determine the amount of GEEZ_TEN_THOUSAND characters in the string
         int amountOfThousands = geezNum.length() - geezNum.replace(GEEZ_TEN_THOUSAND, "").length();
         //from the amountOfThousands get the max multiplier of the converted back number
