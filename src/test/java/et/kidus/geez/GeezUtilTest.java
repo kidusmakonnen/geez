@@ -3,10 +3,11 @@ package et.kidus.geez;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class GeezUtilTest {
-    private final String[] testInputs = {
+    private final String[] TEST_INPUTS = {
             "1","10","100","1000","10000","100000","1000000","10000000","100000000","1000000000","10000000000",
             "100000000000","1000000000000","100010000","100100000","100200000","100110000","1","11","111","1111","11111",
             "111111","1111111","11111111","111111111","1111111111","11111111111","111111111111","1111111111111","1","12",
@@ -17,7 +18,7 @@ class GeezUtilTest {
             "3000003","3000303","3030003","3300003","3030303","303030303","333333333"
     };
 
-    private final String[] testOutputs = {
+    private final String[] TEST_OUTPUTS = {
             "፩", "፲", "፻", "፲፻", "፼", "፲፼", "፻፼", "፲፻፼", "፼፼", "፲፼፼", "፻፼፼", "፲፻፼፼", "፼፼፼", "፼፩፼", "፼፲፼", "፼፳፼",
             "፼፲፩፼", "፩", "፲፩", "፻፲፩", "፲፩፻፲፩", "፼፲፩፻፲፩", "፲፩፼፲፩፻፲፩", "፻፲፩፼፲፩፻፲፩", "፲፩፻፲፩፼፲፩፻፲፩", "፼፲፩፻፲፩፼፲፩፻፲፩",
             "፲፩፼፲፩፻፲፩፼፲፩፻፲፩", "፻፲፩፼፲፩፻፲፩፼፲፩፻፲፩", "፲፩፻፲፩፼፲፩፻፲፩፼፲፩፻፲፩", "፼፲፩፻፲፩፼፲፩፻፲፩፼፲፩፻፲፩", "፩", "፲፪", "፻፳፫", "፲፪፻፴፬",
@@ -28,12 +29,44 @@ class GeezUtilTest {
             "፫፻፴፼፫", "፫፻፫፼፫፻፫", "፫፼፫፻፫፼፫፻፫", "፫፼፴፫፻፴፫፼፴፫፻፴፫"
     };
 
+    private final String[] INVALID_INPUTS = {
+            "፩፩፩፻፻፻፻፩፩", "፩፩", "፴፫፻፪፪", "፭፭፭", "፩፲", "፲፲"
+    };
+
 
 
     @Test
-    void toGeez() {
-        for (int i = 0; i < testInputs.length; i++) {
-            assertEquals(GeezUtil.toGeez(testInputs[i]), testOutputs[i]);
+    void testToGeez() {
+        for (int i = 0; i < TEST_INPUTS.length; i++) {
+            assertEquals(GeezUtil.toGeez(TEST_INPUTS[i]), TEST_OUTPUTS[i]);
+        }
+    }
+
+    @Test
+    void testFromGeez() {
+        for (int i = 0; i < TEST_INPUTS.length; i++) {
+            assertEquals(TEST_INPUTS[i], String.valueOf(GeezUtil.fromGeez(TEST_OUTPUTS[i])));
+        }
+    }
+
+    @Test
+    void testConvertFromGeezUptoTenThousand() {
+        for (int i = 1; i < 10000; i++) {
+            String expected = GeezUtil.toGeez(String.valueOf(i));
+            assertEquals(i, GeezUtil.fromGeez(expected));
+        }
+    }
+
+    @Test
+    void testShouldThrowExceptionInvalidGeezNumber() {
+        for (int i = 0; i < INVALID_INPUTS.length; i++) {
+            int index = i;
+            IllegalArgumentException exception = assertThrows(
+                    IllegalArgumentException.class,
+                    () -> GeezUtil.fromGeez(INVALID_INPUTS[index])
+            );
+
+            assertEquals("Invalid Ge'ez number.", exception.getMessage());
         }
     }
 
