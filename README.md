@@ -10,7 +10,7 @@ Installation
 =============
 
 Gradle
----------------------------
+------
 **Step 1.**  Add the JitPack repository to your build file
 ```
 allprojects {
@@ -28,7 +28,7 @@ dependencies {
 ```
 
 Maven
--------
+-----
 **Step 1.** Add the JitPack repository to your build file
 ```
 <repositories>
@@ -50,13 +50,23 @@ Step 2. Add the dependency
 
 Usage
 =======
+To convert numbers to Ge'ez
+----------------------------
 All you need to do is call  `GeezUtils.toGeez` and specify a number. Your number will be converted to its Ge'ez representation.
 ```
-GeezUtils.toGeez(1298)//'፲፪፻፺፰'
+GeezUtils.toGeez("1298")//returns "፲፪፻፺፰"
 ```
 
+To convert numbers from Ge'ez
+-----------------------------
+To convert numbers from Ge'ez, call `GeezUtils.fromGeez` with the Ge'ez number you want to convert as a parameter.
+```
+GeezUtils.fromGeez("፫፼፫፻፫፼፫፻፫")//returns 303030303
+```
+**Note:** The method throws an IllegalArgumentException if you provide a malformed Ge'ez number string.
+
 Releases
-------------------
+--------
 ### 0.1.3
 > * Fixed regex issue
 
@@ -64,7 +74,7 @@ Releases
 > * Initial Release
 
 Used in
-==================
+========
 -  [Ge'ez number converter bot](https://t.me/GeezNumberBot "Link")
 
 
