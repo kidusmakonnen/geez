@@ -1,6 +1,7 @@
 Ge'ez Utils
 =============
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/231cf6d0c2cd469bbad76d764c5efbc9)](https://app.codacy.com/manual/kidusmakonnen/geez?utm_source=github.com&utm_medium=referral&utm_content=kidusmakonnen/geez&utm_campaign=Badge_Grade_Dashboard)
+[![Coverage Status](https://coveralls.io/repos/github/kidusmakonnen/geez/badge.svg?branch=master)](https://coveralls.io/github/kidusmakonnen/geez?branch=master)
 [![Build Status](https://travis-ci.com/kidusmakonnen/geez.svg?branch=master)](https://travis-ci.com/kidusmakonnen/geez)
 [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
 [![](https://jitpack.io/v/kidusmakonnen/geez.svg)](https://jitpack.io/#kidusmakonnen/geez)
@@ -68,6 +69,8 @@ GeezUtils.fromGeez("፫፼፫፻፫፼፫፻፫")//returns 303030303
 
 Releases
 --------
+### 0.2.0
+> * Added number conversion from Ge'ez numerals
 ### 0.1.3
 > * Fixed regex issue
 
