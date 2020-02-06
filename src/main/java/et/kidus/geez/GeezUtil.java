@@ -1,6 +1,11 @@
 package et.kidus.geez;
 
-import java.util.*;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * A simple library to convert numbers to their Ge'ez number representation.
@@ -77,21 +82,21 @@ public class GeezUtil {
      * @param geezNumber The Ge'ez number string.
      * @return Returns the converted number.
      */
-    public static long fromGeez(String geezNumber) {
+    public static String fromGeez(String geezNumber) throws IllegalArgumentException {
         String geezNum = geezNumber;
         //determine the amount of GEEZ_TEN_THOUSAND characters in the string
         int amountOfThousands = geezNum.length() - geezNum.replace(GEEZ_TEN_THOUSAND, "").length();
         //from the amountOfThousands get the max multiplier of the converted back number
-        long multiplier = (long) Math.pow(10000, amountOfThousands);
+        BigInteger multiplier = BigDecimal.valueOf(Math.pow(10000, amountOfThousands)).toBigInteger();
 
-        long res = 0;
+        BigInteger res = new BigInteger("0");
 
         if (geezNum.charAt(0) == GEEZ_TEN_THOUSAND.charAt(0)) {
             geezNum = GEEZ_ONES[1] + geezNum;
         }
 
         if (!geezNum.contains(GEEZ_TEN_THOUSAND)) {
-            return convertThousands(geezNum);
+            return String.valueOf(convertThousands(geezNum));
         }
 
         boolean multiplyNext = false;
@@ -103,20 +108,20 @@ public class GeezUtil {
                 multiplyNext = true;
             } else {
                 if (multiplyNext) {
-                    res += multiplier * convertThousands(thousand.toString());
+                    res = res.add(multiplier.multiply(BigInteger.valueOf(convertThousands(thousand.toString()))));
                     multiplyNext = false;
                     thousand = new StringBuilder();
-                    multiplier = (long) Math.pow(10000, --amountOfThousands);
+                    multiplier =  BigDecimal.valueOf(Math.pow(10000, --amountOfThousands)).toBigInteger();
                 }
             }
         }
 
         //convert back the remaining digits and add them back
         if (thousand.length() > 0) {
-            res += convertThousands(thousand.toString());
+            res = res.add(BigInteger.valueOf(convertThousands(thousand.toString())));
         }
 
-        return res;
+        return res.toString();
     }
 
     /**
@@ -128,6 +133,12 @@ public class GeezUtil {
     private static long convertThousands(String thousand) {
         if (!thousand.contains(GEEZ_HUNDRED)) {
             return convertTens(thousand);
+        }
+
+        int amountOfHundreds = thousand.length() - thousand.replace(GEEZ_HUNDRED, "").length();
+
+        if (amountOfHundreds > 1) {
+            throw new IllegalArgumentException("Invalid Ge'ez number.");
         }
 
         String[] hundreds = thousand.split(GEEZ_HUNDRED);
