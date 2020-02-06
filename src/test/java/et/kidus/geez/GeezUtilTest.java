@@ -26,12 +26,13 @@ class GeezUtilTest {
     @ParameterizedTest
     @MethodSource("oneUptoTenThousandProvider")
     void testConvertFromGeezUptoTenThousand(int num) {
-        String expected = GeezUtil.toGeez(String.valueOf(num));
-        assertEquals(num, GeezUtil.fromGeez(expected));
+        String expected = String.valueOf(num);
+        String expectedGeez = GeezUtil.toGeez(expected);
+        assertEquals(expected, GeezUtil.fromGeez(expectedGeez));
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"፩፩፩፻፻፻፻፩፩", "፩፩", "፴፫፻፪፪", "፭፭፭", "፩፲", "፲፲"})
+    @ValueSource(strings = {"፩፩፩፻፻፻፻፩፩", "፩፩", "፴፫፻፪፪", "፭፭፭", "፩፲", "፲፲", "፻፻", "፼፼፼፼፼፻፻", "፻፻፼"})
     void testShouldThrowExceptionInvalidGeezNumber(String invalidGeez) {
         IllegalArgumentException exception = assertThrows(
                 IllegalArgumentException.class,
