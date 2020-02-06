@@ -56,14 +56,14 @@ To convert numbers to Ge'ez
 ----------------------------
 All you need to do is call  `GeezUtils.toGeez` and specify a number. Your number will be converted to its Ge'ez representation.
 ```
-GeezUtils.toGeez("1298")//returns "፲፪፻፺፰"
+GeezUtil.toGeez("1298")//returns "፲፪፻፺፰"
 ```
 
 To convert numbers from Ge'ez
 -----------------------------
 To convert numbers from Ge'ez, call `GeezUtils.fromGeez` with the Ge'ez number you want to convert as a parameter.
 ```
-GeezUtils.fromGeez("፫፼፫፻፫፼፫፻፫")//returns 303030303
+GeezUtil.fromGeez("፫፼፫፻፫፼፫፻፫")//returns 303030303
 ```
 **Note:** The method throws an IllegalArgumentException if you provide a malformed Ge'ez number string.
 
