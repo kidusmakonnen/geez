@@ -150,10 +150,8 @@ public class GeezUtil {
                 return 100;
             case 1:
                 return convertTens(hundreds[0]) * 100;
-            case 2:
-                return (convertTens(hundreds[0]) * 100) + convertTens(hundreds[1]);
             default:
-                throw new IllegalArgumentException("Invalid Ge'ez number.");
+                return (convertTens(hundreds[0]) * 100) + convertTens(hundreds[1]);
         }
 
 
