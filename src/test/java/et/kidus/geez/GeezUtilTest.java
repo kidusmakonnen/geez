@@ -42,11 +42,11 @@ class GeezUtilTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {-23, -1, 0})
-    void testShouldThrowExceptionOnValueLessThanOne(int num) {
+    @ValueSource(strings = {"-23", "-1", "0", "00", "00000", "000000000000"})
+    void testShouldThrowExceptionOnValueLessThanOne(String num) {
         IllegalArgumentException exception = assertThrows(
                 IllegalArgumentException.class,
-                () -> GeezUtil.toGeez(String.valueOf(num))
+                () -> GeezUtil.toGeez(num)
         );
         assertEquals("Invalid input.", exception.getMessage());
     }

@@ -35,11 +35,13 @@ public class GeezUtil {
      * @return The returned value is the converted Ge'ez number.
      */
     public static String toGeez(String num) {
-        if (!num.matches("^[0-9]+") || "0".equals(num)) {
+        //strip any leading zeros
+        String strippedNumber = num.replaceFirst("^0+(?!$)", "");
+        if (!strippedNumber.matches("^[0-9]+") || "0".equals(strippedNumber)) {
             throw new IllegalArgumentException("Invalid input.");
         }
         //determine the number of digits and append 0 if it's odd
-        String number = num.length() % 2 == 0 ? num : String.format("0%s", num);
+        String number = strippedNumber.length() % 2 == 0 ? strippedNumber : String.format("0%s", strippedNumber);
         //split the number string into groups of two
         List<String> splitNumber = splitAndGroup(number, 2);
 
@@ -148,10 +150,8 @@ public class GeezUtil {
                 return 100;
             case 1:
                 return convertTens(hundreds[0]) * 100;
-            case 2:
-                return (convertTens(hundreds[0]) * 100) + convertTens(hundreds[1]);
             default:
-                throw new IllegalArgumentException("Invalid Ge'ez number.");
+                return (convertTens(hundreds[0]) * 100) + convertTens(hundreds[1]);
         }
 
 
